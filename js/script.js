@@ -23,14 +23,14 @@
             $message_input = $('.message_input');
             return $message_input.val();
         };
-        sendMessage = function (text) {
+        sendMessage = function (text,side) {
             var $messages, message;
             if (text.trim() === '') {
                 return;
             }
             $('.message_input').val('');
             $messages = $('.messages');
-            message_side = message_side === 'left' ? 'right' : 'left';
+            message_side = side === 'r' ? 'right' : 'left';
             message = new Message({
                 text: text,
                 message_side: message_side
@@ -46,12 +46,7 @@
                 return sendMessage(getMessageText());
             }
         });
-        sendMessage('Hello Philip! :)');
-        setTimeout(function () {
-            return sendMessage('Hi Sandy! How are you?');
-        }, 1000);
-        return setTimeout(function () {
-            return sendMessage('I\'m fine, thank you!');
-        }, 2000);
+        sendMessage("What do you want to prepare today? I can help you on dishes, drinks and desserts!","r");
+        
     });
 }.call(this));
