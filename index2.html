@@ -9,13 +9,14 @@
 
 	<script>
 
-		var data = 
 		axios.post('https://tbypr10uv6.execute-api.us-east-1.amazonaws.com/Dev/sendmessage',{
-			data : {
-				"inputdata" : "Dinner"
-			},
 			headers : { 
 				'userid' : 'qualquercosiakrlh', 
+				 "Access-Control-Allow-Origin" : "*", // Required for CORS support to work     
+				 "Access-Control-Allow-Credentials" : true 
+			},
+			data : {
+				"inputdata" : "Dinner"
 			}
 		})
 		.then(function(response){
