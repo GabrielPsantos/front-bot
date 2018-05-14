@@ -48,17 +48,20 @@
             axios.post('https://tbypr10uv6.execute-api.us-east-1.amazonaws.com/Dev/sendmessage',data, config).then((response) => {
                 var message = response.data.message;
                 var matches = (IsJsonString(message)) ? JSON.parse(message).matches : null;
-                var messageMatches = "Select one of the corresponding recipes : <br>";
+                var messageMatches = "These are the best possible choices found, according to our conversation : <br>";
                 
                 if(matches){
+                    if(matches.length > 0){
+                        for(var x = 0;x < matches.length ; x++){
+                            messageMatches += "<a href='#' class='link-receita' onclick='return false' data-id-receita=" + matches[x].id +  ">" + matches[x].recipeName + "</a> <br>"    
+                        }
+                        messageMatches = messageMatches;
 
-                    for(var x = 0;x < matches.length ; x++){
-                        messageMatches += "<a href='#' class='link-receita' onclick='return false' data-id-receita=" + matches[x].id +  ">" + matches[x].recipeName + "</a> <br>"    
+                        console.log(matches);
+                        sendMessage(messageMatches,"r");
+                    }else{
+                        sendMessage("Sorry, but i couldn't find any recipe that fit to our conversation requirements","r");
                     }
-                    messageMatches = messageMatches;
-
-                    console.log(matches);
-                    sendMessage(messageMatches,"r");
                     sendMessage("Can I help you with some other dishes, drinks and desserts?","r");
                 }else{
                     console.log(message);
@@ -70,28 +73,28 @@
             });
         };
         buscaReceita = function(recipeId){
-        axios.get('http://api.yummly.com/v1/api/recipe/'+recipeId+'?_app_id=bc121501&_app_key=1e30aefaf42b20b97777c59020be3400')
-        .then((response) =>{
-            var campos = response.data;
-            console.log(campos);
-            var imagem = campos.images[0].hostedLargeUrl;
-            var Ingredientes = campos.ingredientLines;
-            for(var x = 0;x<Ingredientes.length;x++){
-                $('#ingredientLines').append("<li>" + Ingredientes[x] + "</li>")
-            }
-            $('#totalTime').html(campos.totalTime);
-            $('#numbersofServing').html(campos.numberOfServings)
-            $('#recipeImg').attr('src',imagem)
-            $('#headerReceita').html(campos.name);
-            $('#sourceName').html(campos.source.sourceDisplayName);
-            $('#sourceUrl').attr('href',campos.source.sourceRecipeUrl);
-            $('#rating').html(campos.rating);
-            $('#myModal').modal('show');
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
-    }
+            axios.get('http://api.yummly.com/v1/api/recipe/'+recipeId+'?_app_id=bc121501&_app_key=1e30aefaf42b20b97777c59020be3400')
+            .then((response) =>{
+                var campos = response.data;
+                console.log(campos);
+                var imagem = campos.images[0].hostedLargeUrl;
+                var Ingredientes = campos.ingredientLines;
+                for(var x = 0;x<Ingredientes.length;x++){
+                    $('#ingredientLines').append("<li>" + Ingredientes[x] + "</li>")
+                }
+                $('#totalTime').html(campos.totalTime);
+                $('#numbersofServing').html(campos.numberOfServings)
+                $('#recipeImg').attr('src',imagem)
+                $('#headerReceita').html(campos.name);
+                $('#sourceName').html(campos.source.sourceDisplayName);
+                $('#sourceUrl').attr('href',campos.source.sourceRecipeUrl);
+                $('#rating').html(campos.rating);
+                $('#myModal').modal('show');
+            })
+            .catch((error)=>{
+                console.log(error);
+            });
+        }
 
 
         $('body').on('click','.link-receita',function(e){
