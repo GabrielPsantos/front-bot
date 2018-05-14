@@ -10,8 +10,8 @@ body {
 .chat_window {
   position: absolute;
   width: calc(100% - 20px);
-  max-width: 800px;
-  height: 500px;
+  /*max-width: 800px;*/
+  height: 100vh;
   border-radius: 10px;
   background-color: #fff;
   left: 50%;
@@ -60,7 +60,7 @@ body {
   list-style: none;
   padding: 20px 10px 0 10px;
   margin: 0;
-  height: 347px;
+  height: 80%;
   overflow: scroll;
 }
 .messages .message {
@@ -188,6 +188,21 @@ body {
   font-weight: 300;
   display: inline-block;
   line-height: 48px;
+}
+
+
+.bottom_wrapper .restart_conversation {
+  width: 100%;
+  height: 50px;
+  display: inline-block;
+  border-radius: 50px;
+  background-color: #a3d063;
+  border: 2px solid #a3d063;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  text-align: center;
+  float: right;
 }
 
 .message_template {

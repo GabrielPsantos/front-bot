@@ -3,17 +3,22 @@
 	<title>FoodBot</title>
 	<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 	<link href="css/style.css" rel="stylesheet">
+	<style type="text/css">
+	.img-responsive {
+		margin: 0 auto;
+	}
+</style>
 </head>
 <body>
 
 	<div class="chat_window">
 		<div class="top_menu">
 			<div class="buttons">
-				<div class="button close"></div>
+				<!-- <div class="button close"></div>
 				<div class="button minimize"></div>
-				<div class="button maximize"></div>
+				<div class="button maximize"></div> -->
 			</div>
-			<div class="title">Chat</div>
+			<div class="title">FoodBot</div>
 		</div>
 		<ul class="messages">
 		</ul>
@@ -37,10 +42,35 @@
 			</div>
 		</li>
 	</div>
+	<div id="myModal" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-lg">
+			<!-- Modal content-->
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 id="headerReceita" class="modal-title">Modal Header</h4>
+				</div>
+				<div class="modal-body">
+					<img class="center-block img-responsive" id="recipeImg" src="">
+					<h4>Total Time : <span id="totalTime"></span></h4>
+					<h4>Ingredient Lines</h4>
+					<ul id="ingredientLines" >
+					</ul>
+					<h5>Numbers of serving : <span id="numbersofServing"></span></h5>
+					<h5>Recipe Source : <a id="sourceUrl" href=""><span id="sourceName"></span> </a> </h5>
+					<h5>Rating : <span id="rating"></span> <span class='glyphicon glyphicon-star'></span></a> </h5>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 	<script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
 	<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-	
 	<script src="js/script.js"></script>
 </body>
 </html>
